@@ -128,6 +128,7 @@ void GetLocation(const FunctionCallbackInfo<Value>& args) {
     double lat, lng, alt, horizontalAcc, verticalAcc;
     NSInteger error;
 
+/*
     if(!enableCoreLocation()) {
         isolate->ThrowException(Exception::TypeError(String::NewFromUtf8(isolate, "ENOLOCATIONSERVICES")));
         return;
@@ -146,6 +147,7 @@ void GetLocation(const FunctionCallbackInfo<Value>& args) {
             return;
         }
     }
+    */
 
     Local<Object> obj = Object::New(isolate);
     obj->Set(String::NewFromUtf8(isolate, "lat"), v8::Number::New(isolate, static_cast<double>(lat)));
@@ -157,7 +159,7 @@ void GetLocation(const FunctionCallbackInfo<Value>& args) {
     args.GetReturnValue().Set(obj);
 }
 
-void Initialise(Handle<Object> exports) {
+void Initialise(v8::Handle<Object> exports) {
     NODE_SET_METHOD(exports, "getLocation", GetLocation);
 }
 
